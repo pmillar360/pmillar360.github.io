@@ -1,26 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
 
     <title>Patrick Millar - Software Engineer</title>
     <style>
       body {
-        font-family: Arial, sans-serif;
+        font-family: "Inter", Arial, sans-serif;
         margin: 0;
         padding: 0;
         text-align: center;
       }
       header {
-        background: #333;
+        background-image: url('https://live.staticflickr.com/65535/54107357754_d22534bf7e_3k.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         color: white;
-        padding: 20px;
+        padding: 40px 20px;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      header > div {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 30px 40px;
+        border-radius: 15px;
+        backdrop-filter: blur(5px);
       }
       section {
         padding: 50px 20px;
@@ -37,35 +52,38 @@
   </head>
   <body>
     <header>
-      <h1>Patrick Millar</h1>
-      <p>Software Engineer</p>
-      <p>Current Status: Open to Remote (Contract) Work</p>
+      <div>
+        <h1>Patrick Millar</h1>
+        <p>Software Engineer</p>
+        <p>Current Status: Open to Remote (Contract) Work</p>
+      </div>
     </header>
 
     <section id="about">
       <h2>About Me</h2>
       <p>
-        I'm a creative and adaptable software engineer with 9 years of experience
-        building robust desktop applications in C# and WPF. I've recently expanded
-        into full-stack web development using React and Python, with a growing
-        focus on AI-assisted tools like GitHub Copilot and ChatGPT. Passionate
-        about building user-friendly, efficient tools and quickly adapting to
-        new technologies. <br><br> Currently seeking remote part-time or contract
-        opportunities, with plans to relocate to Europe.
+        I'm a creative and adaptable software engineer with 9 years of
+        experience building robust desktop applications in C# and WPF. I've
+        recently expanded into full-stack web development using React and
+        Python, with a growing focus on AI-assisted tools like GitHub Copilot
+        and ChatGPT. Passionate about building user-friendly, efficient tools
+        and quickly adapting to new technologies. <br /><br />
+        Currently seeking remote part-time or contract opportunities, with plans
+        to relocate to Europe.
       </p>
     </section>
 
     <section id="portfolio">
       <h2>Projects</h2>
-        <!-- <a href="meal-maker">
+      <!-- <a href="meal-maker">
           <h3>Meal Maker</h3>
         </a> -->
-        <a href="https://mernapp-demo.onrender.com" target="_blank">
-          <h3>Hotel Booking App Demo</h3>
-        </a>
-      <p >
-        <br>
-        <br>
+      <a href="https://mernapp-demo.onrender.com" target="_blank">
+        <h3>Hotel Booking App Demo</h3>
+      </a>
+      <p>
+        <br />
+        <br />
         ...and check out my work on
         <a href="https://github.com/pmillar360" target="_blank">GitHub</a>
       </p>
@@ -78,7 +96,9 @@
         <a href="mailto:your.email@example.com" target="_blank" rel="noopener">your.email@example.com</a>
       </p> -->
       <p class="links">
-        <a href="https://linkedin.com/in/patrick.millar" target="_blank">LinkedIn</a>
+        <a href="https://linkedin.com/in/patrick.millar" target="_blank"
+          >LinkedIn</a
+        >
         <a href="https://github.com/pmillar360" target="_blank">GitHub</a>
       </p>
     </section>
