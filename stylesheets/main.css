@@ -7,7 +7,7 @@ body {
 }
 
 header {
-  background-image: url('https://live.staticflickr.com/65535/54107357754_d22534bf7e_3k.jpg');
+  background-image: url("../images/jwst_bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
