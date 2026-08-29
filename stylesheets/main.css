@@ -1,81 +1,501 @@
-body {
-  font-family: "Inter", Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  background-color: whitesmoke;
+:root {
+  --bg-deep: #040b1a;
+  --bg-mid: #091a2f;
+  --panel: rgba(10, 17, 30, 0.84);
+  --panel-border: rgba(148, 163, 184, 0.25);
+  --text-main: #ebf3ff;
+  --text-soft: #b8c6e4;
+  --sun-core: #ffb703;
+  --planet-projects: #7dd3fc;
+  --planet-skills: #c084fc;
+  --planet-contact: #fda4af;
+  --moon-1: #8ecae6;
+  --moon-2: #90dbf4;
+  --moon-3: #f7d6e0;
+  --moon-4: #ffd166;
+  --moon-5: #aed9e0;
 }
 
-header {
-  background-image: url("../images/jwst_bg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: white;
-  padding: 40px 20px;
-  min-height: 200px;
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Inter", Arial, sans-serif;
+  background:
+    radial-gradient(circle at center, rgba(93, 118, 173, 0.15), transparent 30%),
+    linear-gradient(160deg, var(--bg-deep), var(--bg-mid) 45%, #0d1b2a 100%);
+  color: var(--text-main);
+  overflow-x: clip;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.9) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(255,255,255,0.7) 0 1px, transparent 1.8px),
+    radial-gradient(circle, rgba(255,255,255,0.5) 0 1px, transparent 2px);
+  background-size: 180px 180px;
+  background-position: 0 0, 30px 70px, 60px 120px;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.solar-page {
+  position: relative;
+  min-height: 100vh;
+  width: min(1200px, calc(100vw - 32px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.8fr);
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 4rem);
+  padding: clamp(1.5rem, 3vw, 3rem) 0;
+}
+
+.solar-system {
+  position: relative;
+  width: min(72vmin, 760px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.35));
+  container-type: inline-size;
+}
+
+.orbit {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: orbit-spin var(--speed) linear infinite;
+  pointer-events: none;
+}
+
+.orbit--contact {
+  --speed: 30s;
+  --counter-direction: reverse;
+  --orbit-diameter: 54cqw;
+  width: var(--orbit-diameter);
+  height: var(--orbit-diameter);
+}
+
+.orbit--skills {
+  --speed: 26s;
+  --counter-direction: normal;
+  --orbit-diameter: 34cqw;
+  width: var(--orbit-diameter);
+  height: var(--orbit-diameter);
+  animation-direction: reverse;
+}
+
+.orbit--projects {
+  --speed: 34s;
+  --counter-direction: reverse;
+  --orbit-diameter: 74cqw;
+  width: var(--orbit-diameter);
+  height: var(--orbit-diameter);
+}
+
+.planet,
+.sun,
+.moon {
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-header > div {
-  background: rgba(0, 0, 0, 0.3);
-  padding: 30px 40px;
-  border-radius: 15px;
-  backdrop-filter: blur(5px);
-}
-
-section {
-  padding: 50px 20px;
-  max-width: 800px;
-  margin: auto;
-}
-
-.links a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-}
-
-/* Portfolio section styles */
-.portfolio-container {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.portfolio-item {
-  text-decoration: none;
-  position: relative;
-  display: inline-block;
-}
-
-.portfolio-button {
-  padding: 0;
-  border: none;
+  border-radius: 50%;
+  text-align: center;
   cursor: pointer;
-  border-radius: 10px;
-  overflow: hidden;
-  width: 250px;
-  height: 200px;
+  user-select: none;
+  transition: box-shadow 0.25s ease, filter 0.25s ease, border-color 0.25s ease;
+  outline: none;
+  font: inherit;
+  padding: 0;
+  pointer-events: auto;
 }
 
-.portfolio-button img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.planet:focus-visible,
+.sun:focus-visible,
+.moon:focus-visible,
+.planet:hover,
+.sun:hover,
+.moon:hover {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.7), 0 0 22px rgba(255, 255, 255, 0.18);
+  filter: brightness(1.08);
 }
 
-.portfolio-title {
+.planet[aria-pressed="true"],
+.moon[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.62), 0 0 24px rgba(255, 255, 255, 0.16);
+}
+
+.planet {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--radius)) rotate(calc(-1 * var(--angle)));
+  width: clamp(44px, 8cqw, 64px);
+  height: clamp(44px, 8cqw, 64px);
+  border: 1px solid rgba(255,255,255,0.24);
+  font-size: clamp(0.56rem, 1.4cqw, 0.8rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+}
+
+.planet--contact {
+  --angle: 110deg;
+  --radius: 27cqw;
+  background: radial-gradient(circle at 30% 30%, #ffd4da, var(--planet-contact) 60%, #7d2d3d 100%);
+}
+
+.planet--skills {
+  --angle: 230deg;
+  --radius: 17cqw;
+  background: radial-gradient(circle at 30% 30%, #f0d7ff, var(--planet-skills) 60%, #5a2f77 100%);
+}
+
+.planet--projects {
+  --angle: 180deg;
+  --radius: 37cqw;
+  background: radial-gradient(circle at 30% 30%, #dff8ff, var(--planet-projects) 60%, #165b7e 100%);
+}
+
+.project-system {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  color: white;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  border-radius: 5px;
+  left: 50%;
+  top: 50%;
+  width: clamp(44px, 8cqw, 64px);
+  height: clamp(44px, 8cqw, 64px);
+  transform: translate(-50%, -50%) rotate(180deg) translateX(37cqw) rotate(-180deg);
+}
+
+.project-system .planet--projects {
+  left: 0;
+  top: 0;
+  transform: none;
+}
+
+.orbit .planet > span,
+.orbit .moon > span {
+  animation: counter-orbit var(--speed) linear infinite;
+  animation-direction: var(--counter-direction);
+}
+
+.sun {
+  left: 50%;
+  top: 50%;
+  width: clamp(96px, 20cqw, 174px);
+  height: clamp(96px, 20cqw, 174px);
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  gap: 0.25rem;
+  background: radial-gradient(circle at 35% 30%, #fff2be, var(--sun-core) 40%, #d97900 100%);
+  border: 2px solid rgba(255,255,255,0.35);
+  box-shadow: 0 0 30px rgba(255, 183, 3, 0.75), 0 0 90px rgba(255, 158, 31, 0.4);
+  z-index: 2;
+}
+
+.sun span {
+  font-size: clamp(1.2rem, 4cqw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sun small {
+  font-size: clamp(0.58rem, 1.5cqw, 0.78rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.moon-group {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+}
+
+.moon {
+  width: clamp(36px, 5.2cqw, 40px);
+  height: clamp(36px, 5.2cqw, 40px);
+  left: 0;
+  top: 0;
+  font-size: clamp(0.36rem, 0.82cqw, 0.48rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(2, 6, 23, 0.8);
+  font-weight: 700;
+  border: 1px solid rgba(255,255,255,0.24);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.18);
+  transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--dist)) rotate(calc(-1 * var(--angle)));
+}
+
+.moon--meal {
+  --angle: 95deg;
+  --dist: clamp(48px, 8cqw, 62px);
+  background: var(--moon-1);
+}
+
+.moon--kindle {
+  --angle: 145deg;
+  --dist: clamp(48px, 10.5cqw, 80px);
+  background: var(--moon-2);
+}
+
+.moon--brackets {
+  --angle: 180deg;
+  --dist: clamp(48px, 13.2cqw, 100px);
+  background: var(--moon-3);
+}
+
+.moon--travel {
+  --angle: 215deg;
+  --dist: clamp(48px, 10.5cqw, 80px);
+  background: var(--moon-4);
+}
+
+.moon--prm {
+  --angle: 265deg;
+  --dist: clamp(48px, 8cqw, 62px);
+  background: var(--moon-5);
+}
+
+.info-panel {
+  position: relative;
+  padding: clamp(1.25rem, 2vw, 2rem);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 24px;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 25px 40px rgba(2, 6, 23, 0.35);
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: #8ecae6;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.info-panel h2 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.1;
+}
+
+.info-panel p {
   margin: 0;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.detail-list {
+  margin: 1rem 0 1.25rem;
+  padding-left: 1.1rem;
+  color: var(--text-main);
+  display: grid;
+  gap: 0.45rem;
+  line-height: 1.6;
+}
+
+#panel-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0.7rem 1.15rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(125, 211, 252, 0.28), rgba(192, 132, 252, 0.22));
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+#panel-link:hover,
+#panel-link:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.solar-system.is-paused .orbit {
+  animation-play-state: paused;
+}
+
+.solar-system.is-paused .orbit .planet > span,
+.solar-system.is-paused .orbit .moon > span {
+  animation-play-state: paused;
+}
+
+@keyframes orbit-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes counter-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 900px) {
+  .solar-page {
+    grid-template-columns: 1fr;
+    padding: 2rem 0 3rem;
+  }
+
+  .solar-system {
+    width: min(90vw, 560px);
+  }
+
+  .info-panel {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .solar-page {
+    width: min(92vw, 500px);
+  }
+
+  .solar-system {
+    width: 100%;
+    height: clamp(420px, 132vw, 520px);
+    aspect-ratio: auto;
+  }
+
+  .orbit {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    transform: none;
+    animation: none;
+  }
+
+  .orbit .planet > span,
+  .orbit .moon > span {
+    animation: none;
+  }
+
+  .planet {
+    transform: translate(-50%, -50%);
+    font-size: 0.58rem;
+  }
+
+  .orbit--contact .planet {
+    left: 18%;
+    top: 42%;
+  }
+
+  .orbit--skills .planet {
+    left: 82%;
+    top: 42%;
+  }
+
+  .project-system {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+  }
+
+  .project-system .planet--projects {
+    left: 50%;
+    top: 66%;
+    transform: translate(-50%, -50%);
+  }
+
+  .sun {
+    top: 14%;
+  }
+
+  .moon-group {
+    left: 0;
+    top: 66%;
+    width: 100%;
+    height: 0;
+  }
+
+  .moon {
+    width: 44px;
+    height: 44px;
+    top: clamp(92px, 29vw, 130px);
+    transform: translate(-50%, -50%);
+  }
+
+  .moon--meal {
+    left: 12%;
+  }
+
+  .moon--kindle {
+    left: 31%;
+  }
+
+  .moon--brackets {
+    left: 50%;
+  }
+
+  .moon--travel {
+    left: 69%;
+  }
+
+  .moon--prm {
+    left: 88%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
