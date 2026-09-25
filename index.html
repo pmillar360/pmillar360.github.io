@@ -3,234 +3,175 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="stylesheets/main.css" />
-
-    <title>Patrick Millar | Software Engineer</title>
+    <meta name="theme-color" content="#05070d" />
     <meta
       name="description"
-      content="Patrick Millar is a software engineer building thoughtful desktop, web, and AI-enabled products."
+      content="Patrick Millar is a software engineer building dependable desktop, web, and AI-enabled products."
     />
-    <meta name="theme-color" content="#040b1a" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%2305070d' stroke='%23d5ff5f' stroke-width='2'/%3E%3Ctext x='32' y='38' text-anchor='middle' font-family='Arial' font-size='19' font-weight='700' fill='%23d5ff5f'%3EPM%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="stylesheets/main.css" />
+    <title>Patrick Millar — Software Engineer</title>
   </head>
   <body>
-    <main class="solar-page">
-      <section
-        class="solar-system"
-        aria-describedby="explorer-instructions"
-        aria-label="Interactive portfolio explorer"
-      >
-        <h1 class="visually-hidden">Patrick Millar, Software Engineer</h1>
-        <p id="explorer-instructions" class="visually-hidden">
-          Explore Patrick’s profile with the buttons below. The selected topic is shown in the profile panel.
-        </p>
+    <canvas id="starfield" aria-hidden="true"></canvas>
+    <div class="noise" aria-hidden="true"></div>
 
-        <div class="orbit orbit--contact">
-          <button
-            type="button"
-            class="planet planet--contact"
-            aria-controls="profile-panel"
-            aria-pressed="false"
-            data-title="Contact"
-            data-description="Let’s build something thoughtful, useful, and human-centered."
-            data-details="LinkedIn|GitHub|Open to full-time roles in Europe|Available for product and platform work"
-            data-link-text="Connect"
-            data-link-url="https://linkedin.com/in/patrick.millar"
-          >
-            <span>Contact</span>
-          </button>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="Patrick Millar, home">
+          <span class="brand__mark" aria-hidden="true">PM</span>
+          <span class="brand__text">Patrick Millar</span>
+        </a>
+        <div class="header-meta">
+          <span class="availability"><i aria-hidden="true"></i> Open to opportunities</span>
+          <span class="header-meta__role">Software Engineer</span>
         </div>
+      </header>
 
-        <div class="orbit orbit--skills">
-          <button
-            type="button"
-            class="planet planet--skills"
-            aria-controls="profile-panel"
-            aria-pressed="false"
-            data-title="Skills"
-            data-description="I work across desktop engineering, front-end interfaces, and modern web products."
-            data-details="C# / WPF|React / TypeScript|Python / FastAPI|AI-enabled development workflows"
-            data-link-text="Explore"
-            data-link-url="https://github.com/pmillar360"
-          >
-            <span>Skills</span>
-          </button>
-        </div>
+      <main id="top" class="hero">
+        <section class="intro" aria-labelledby="page-title">
+          <p class="kicker"><span>01</span> Hello from my orbit</p>
+          <h1 id="page-title">I build software that feels <em>effortless.</em></h1>
+          <p class="lede">
+            I’m Patrick, a product-minded software engineer with 9+ years of experience
+            turning complex problems into dependable, human-centered tools.
+          </p>
 
-        <div class="orbit orbit--projects">
-          <div class="project-system">
-            <button
-              type="button"
-              class="planet planet--projects"
-              aria-controls="profile-panel"
-              aria-pressed="false"
-              data-title="Projects"
-              data-description="A collection of products that blend practical utility with creative problem-solving."
-              data-details="Meal planning apps|Knowledge management tools|Tournament tooling|Travel tracking systems|Relationship management"
-              data-link-text="View GitHub"
-              data-link-url="https://github.com/pmillar360"
-            >
-              <span>Projects</span>
-            </button>
+          <div class="intro-actions" aria-label="Primary links">
+            <a class="button button--primary" href="https://github.com/pmillar360" target="_blank" rel="noopener">
+              <span>View GitHub</span>
+              <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10h12m-4-4 4 4-4 4" /></svg>
+            </a>
+            <a class="button button--quiet" href="https://linkedin.com/in/patrick.millar" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
 
-            <div class="moon-group" role="group" aria-label="Project satellites">
+          <section class="mission-card" aria-labelledby="panel-title">
+            <div class="mission-card__topline">
+              <p id="panel-eyebrow">Selected · Profile</p>
+              <span id="panel-index" aria-hidden="true">00</span>
+            </div>
+            <div class="mission-card__content" aria-live="polite" aria-atomic="true">
+              <h2 id="panel-title">About Patrick</h2>
+              <p id="panel-description">
+                Creative, adaptable, and happiest where thoughtful engineering meets a useful product.
+              </p>
+              <ul id="panel-details" class="detail-list">
+                <li>9+ years in software engineering</li>
+                <li>Desktop to full-stack product work</li>
+                <li>AI-assisted tools and product design</li>
+              </ul>
+              <a id="panel-link" href="https://github.com/pmillar360" target="_blank" rel="noopener">
+                <span>View profile</span>
+                <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10h12m-4-4 4 4-4 4" /></svg>
+              </a>
+            </div>
+          </section>
+        </section>
+
+        <section class="space" aria-label="Interactive portfolio solar system">
+          <div class="space__heading">
+            <div>
+              <p>Portfolio system</p>
+              <h2>Choose a celestial body</h2>
+            </div>
+            <p class="space__hint"><span aria-hidden="true"></span> Click to explore</p>
+          </div>
+
+          <div class="viewport">
+            <div class="system" id="solar-system">
+              <div class="system__glow" aria-hidden="true"></div>
+              <div class="orbit orbit--outer" aria-hidden="true"><i></i><i></i></div>
+              <div class="orbit orbit--middle" aria-hidden="true"><i></i></div>
+              <div class="orbit orbit--inner" aria-hidden="true"><i></i></div>
+
               <button
                 type="button"
-                class="moon moon--meal"
-                aria-controls="profile-panel"
-                aria-pressed="false"
-                data-title="Meal Maker"
-                data-description="A practical planning tool for meal ideas, structure, and inspiration."
-                data-details="React UI|Responsive planning workflow|Built for practical daily use"
-                data-link-text="Open app"
-                data-link-url="https://meal-maker-frontend.onrender.com"
+                class="celestial sun is-selected"
+                aria-pressed="true"
+                data-index="00"
+                data-type="Profile"
+                data-title="About Patrick"
+                data-description="Creative, adaptable, and happiest where thoughtful engineering meets a useful product."
+                data-details="9+ years in software engineering|Desktop to full-stack product work|AI-assisted tools and product design"
+                data-link-text="View profile"
+                data-link-url="https://github.com/pmillar360"
               >
-                <span>Meal</span>
+                <span class="celestial__body sun__body" aria-hidden="true"><i></i></span>
+                <span class="celestial__label"><b>Patrick</b><small>Core profile</small></span>
               </button>
+
               <button
                 type="button"
-                class="moon moon--kindle"
-                aria-controls="profile-panel"
+                class="celestial planet planet--projects"
                 aria-pressed="false"
-                data-title="Kindle Clippings Manager"
-                data-description="A streamlined archive and retrieval helper for Kindle highlights."
-                data-details="Content organization|Search and review workflow|Personal knowledge management"
-                data-link-text="Open app"
-                data-link-url="https://kindleclippingsmanager.onrender.com/"
+                data-index="01"
+                data-type="Portfolio"
+                data-title="Selected projects"
+                data-description="Small, focused products built to solve real problems — from personal knowledge to event logistics."
+                data-details="Meal planning and recipe inspiration|Kindle highlight management|Tournament and travel tooling|Personal relationship management"
+                data-link-text="Browse GitHub"
+                data-link-url="https://github.com/pmillar360"
               >
-                <span>Kindle</span>
+                <span class="celestial__body planet__body" aria-hidden="true"><i></i></span>
+                <span class="celestial__label"><b>Projects</b><small>5 in orbit</small></span>
               </button>
+
               <button
                 type="button"
-                class="moon moon--brackets"
-                aria-controls="profile-panel"
+                class="celestial planet planet--skills"
                 aria-pressed="false"
-                data-title="Brackets 2"
-                data-description="Tournament management software built for running brackets smoothly."
-                data-details="Bracket orchestration|Fast tournament flows|Event-friendly experience"
-                data-link-text="Open app"
-                data-link-url="https://brackets2-static.onrender.com"
+                data-index="02"
+                data-type="Capabilities"
+                data-title="Engineering toolkit"
+                data-description="Comfortable moving between product thinking, interface craft, and the systems underneath."
+                data-details="C# and WPF desktop engineering|React and TypeScript interfaces|Python and FastAPI services|AI-enabled development workflows"
+                data-link-text="See my work"
+                data-link-url="https://github.com/pmillar360"
               >
-                <span>Brackets</span>
+                <span class="celestial__body planet__body" aria-hidden="true"><i></i></span>
+                <span class="celestial__label"><b>Skills</b><small>Full-stack</small></span>
               </button>
+
               <button
                 type="button"
-                class="moon moon--travel"
-                aria-controls="profile-panel"
+                class="celestial planet planet--contact"
                 aria-pressed="false"
-                data-title="Travel Tracker"
-                data-description="A small travel companion for tracking plans, visits, and trip logistics."
-                data-details="Trip planning|Personal tracking|Map-friendly workflow"
-                data-link-text="Open app"
-                data-link-url="https://travel-tracker-3dpx.onrender.com/"
+                data-index="03"
+                data-type="Signal"
+                data-title="Let’s connect"
+                data-description="I’m looking for a full-time engineering role in Europe and always happy to meet thoughtful product people."
+                data-details="Open to full-time roles in Europe|Product and platform engineering|Available via LinkedIn"
+                data-link-text="Connect on LinkedIn"
+                data-link-url="https://linkedin.com/in/patrick.millar"
               >
-                <span>Travel</span>
+                <span class="celestial__body planet__body" aria-hidden="true"><i></i></span>
+                <span class="celestial__label"><b>Contact</b><small>Send a signal</small></span>
               </button>
-              <button
-                type="button"
-                class="moon moon--prm"
-                aria-controls="profile-panel"
-                aria-pressed="false"
-                data-title="PRM"
-                data-description="A personal relationship manager for organizing important connections and interactions."
-                data-details="Relationship tracking|Long-term planning|Personal systems"
-                data-link-text="Open app"
-                data-link-url="https://prm-4ou1.onrender.com/"
-              >
-                <span>PRM</span>
-              </button>
+
+              <nav class="project-belt" aria-label="Project shortcuts">
+                <span class="project-belt__line" aria-hidden="true"></span>
+                <a class="moon moon--meal" href="https://meal-maker-frontend.onrender.com" target="_blank" rel="noopener" aria-label="Open Meal Maker"><i aria-hidden="true"></i><span>Meal Maker</span></a>
+                <a class="moon moon--kindle" href="https://kindleclippingsmanager.onrender.com/" target="_blank" rel="noopener" aria-label="Open Kindle Clippings Manager"><i aria-hidden="true"></i><span>Kindle</span></a>
+                <a class="moon moon--brackets" href="https://brackets2-static.onrender.com" target="_blank" rel="noopener" aria-label="Open Brackets 2"><i aria-hidden="true"></i><span>Brackets</span></a>
+                <a class="moon moon--travel" href="https://travel-tracker-3dpx.onrender.com/" target="_blank" rel="noopener" aria-label="Open Travel Tracker"><i aria-hidden="true"></i><span>Travel</span></a>
+                <a class="moon moon--prm" href="https://prm-4ou1.onrender.com/" target="_blank" rel="noopener" aria-label="Open PRM"><i aria-hidden="true"></i><span>PRM</span></a>
+              </nav>
+            </div>
+
+            <div class="coordinates" aria-hidden="true">
+              <span>REGION EUROPE</span>
+              <span>SYS 09 · 25</span>
             </div>
           </div>
-        </div>
+        </section>
+      </main>
 
-        <button
-          type="button"
-          class="sun"
-          aria-controls="profile-panel"
-          aria-pressed="true"
-          data-title="About Me"
-          data-description="I’m a creative and adaptable software engineer with nearly a decade of experience building robust products and tools."
-          data-details="9+ years in software engineering|Desktop to full-stack product work|Passionate about AI-assisted tools and user-friendly design|Currently looking for full-time opportunities in Europe"
-          data-link-text="View profile"
-          data-link-url="https://github.com/pmillar360"
-        >
-          <span>Patrick</span>
-          <small>Software Engineer</small>
-        </button>
-      </section>
+      <footer class="site-footer">
+        <p>Built with curiosity <span aria-hidden="true">✦</span> No frameworks, no tracking</p>
+        <p>© <span id="year">2026</span> Patrick Millar</p>
+      </footer>
+    </div>
 
-      <aside id="profile-panel" class="info-panel" aria-live="polite" aria-atomic="true">
-        <p class="eyebrow">Orbital profile</p>
-        <h2 id="panel-title">About Me</h2>
-        <p id="panel-description">
-          I’m a creative and adaptable software engineer with nearly a decade of experience building robust products and tools.
-        </p>
-        <ul id="panel-details" class="detail-list">
-          <li>9+ years in software engineering</li>
-          <li>Desktop to full-stack product work</li>
-          <li>Passionate about AI-assisted tools and user-friendly design</li>
-        </ul>
-        <a id="panel-link" href="https://github.com/pmillar360" target="_blank" rel="noopener">View profile</a>
-      </aside>
-    </main>
-
-    <script>
-      const solarSystem = document.querySelector('.solar-system');
-      const panelTitle = document.getElementById('panel-title');
-      const panelDescription = document.getElementById('panel-description');
-      const panelDetails = document.getElementById('panel-details');
-      const panelLink = document.getElementById('panel-link');
-      const interactiveItems = document.querySelectorAll('.sun, .planet, .moon');
-
-      function setActiveItem(item, { pause = true } = {}) {
-        const title = item.dataset.title || 'About Me';
-        const description = item.dataset.description || '';
-        const details = (item.dataset.details || '').split('|').map((entry) => entry.trim()).filter(Boolean);
-        const linkText = item.dataset.linkText || 'Explore';
-        const linkUrl = item.dataset.linkUrl || '#';
-
-        if (pause) {
-          solarSystem.classList.add('is-paused');
-        }
-        interactiveItems.forEach((entry) => {
-          entry.setAttribute('aria-pressed', String(entry === item));
-        });
-        panelTitle.textContent = title;
-        panelDescription.textContent = description;
-        panelDetails.innerHTML = '';
-
-        details.forEach((detail) => {
-          const li = document.createElement('li');
-          li.textContent = detail;
-          panelDetails.appendChild(li);
-        });
-
-        panelLink.href = linkUrl;
-        panelLink.textContent = linkText;
-        panelLink.style.display = linkUrl && linkUrl !== '#' ? 'inline-flex' : 'none';
-      }
-
-      function resumeSystem() {
-        if (!solarSystem.contains(document.activeElement)) {
-          solarSystem.classList.remove('is-paused');
-        }
-      }
-
-      interactiveItems.forEach((item) => {
-        item.addEventListener('pointerenter', () => setActiveItem(item));
-        item.addEventListener('focus', () => setActiveItem(item));
-        item.addEventListener('click', () => setActiveItem(item));
-        item.addEventListener('pointerleave', resumeSystem);
-        item.addEventListener('blur', resumeSystem);
-      });
-
-      setActiveItem(document.querySelector('.sun'), { pause: false });
-    </script>
+    <script src="main.js" defer></script>
   </body>
 </html>
