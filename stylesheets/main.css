@@ -136,10 +136,10 @@ a { color: inherit; }
 .hero {
   flex: 1;
   display: grid;
-  grid-template-columns: minmax(370px, 0.82fr) minmax(520px, 1.18fr);
+  grid-template-columns: minmax(400px, 540px) minmax(540px, 1fr);
   align-items: center;
-  gap: clamp(2rem, 4.5vw, 6rem);
-  padding: clamp(3rem, 6vh, 6rem) 0;
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+  padding: clamp(1.5rem, 4vh, 4rem) 0;
 }
 
 .intro { position: relative; z-index: 2; }
@@ -205,8 +205,7 @@ a { color: inherit; }
   transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.button svg,
-#panel-link svg {
+.button svg {
   width: 18px;
   fill: none;
   stroke: currentColor;
@@ -304,20 +303,6 @@ a { color: inherit; }
   line-height: 1.2;
 }
 
-#panel-link {
-  margin-top: 1rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  color: var(--lime);
-  font-size: 0.73rem;
-  font-weight: 750;
-  text-decoration: none;
-}
-
-#panel-link:hover,
-#panel-link:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
-
 .space { min-width: 0; }
 
 .space__heading {
@@ -357,7 +342,7 @@ a { color: inherit; }
 
 .viewport {
   position: relative;
-  width: min(100%, 760px);
+  width: min(100%, 820px);
   aspect-ratio: 1 / 0.93;
   margin: 0 auto;
   overflow: hidden;
@@ -396,14 +381,14 @@ a { color: inherit; }
 }
 
 .system {
-  --tilt-x: 0deg;
-  --tilt-y: 0deg;
+  --near-x: 0px;
+  --near-y: 0px;
+  --far-x: 0px;
+  --far-y: 0px;
   position: absolute;
   inset: 3% 3% 7%;
   container-type: inline-size;
-  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
   transform-style: preserve-3d;
-  transition: transform 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .system__glow {
@@ -483,6 +468,7 @@ a { color: inherit; }
   cursor: pointer;
   transform: translate(-50%, -50%) translateZ(38px);
   transform-style: preserve-3d;
+  translate: var(--far-x) var(--far-y);
 }
 
 .celestial__body {
@@ -529,6 +515,7 @@ a { color: inherit; }
   display: block;
   border-radius: 50%;
   transform: translate(-50%, -50%) translateZ(70px);
+  translate: var(--near-x) var(--near-y);
 }
 
 .sun__body {
@@ -594,14 +581,13 @@ a { color: inherit; }
 .project-belt {
   position: absolute;
   z-index: 3;
-  left: 8%;
-  right: 8%;
-  bottom: 2.5%;
+  left: 10%;
+  right: 10%;
+  bottom: 9%;
   height: 72px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   align-items: start;
-  transform: translateZ(48px);
 }
 
 .project-belt__line {
@@ -638,7 +624,7 @@ a { color: inherit; }
   border-radius: 50%;
   background: radial-gradient(circle at 32% 28%, #eaffff, var(--moon-color) 48%, #2b5560 100%);
   box-shadow: 0 0 16px color-mix(in srgb, var(--moon-color), transparent 72%);
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .moon:nth-of-type(even) { padding-top: 9px; }
@@ -647,7 +633,8 @@ a { color: inherit; }
 
 .moon:hover i,
 .moon:focus-visible i {
-  transform: translateY(-4px) scale(1.12);
+  border-color: rgba(255, 255, 255, 0.72);
+  transform: translateY(-2px);
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08), 0 0 22px color-mix(in srgb, var(--moon-color), transparent 55%);
 }
 
@@ -703,6 +690,75 @@ a { color: inherit; }
   .celestial__label small { display: none; }
 }
 
+/* Keep the complete explorer above the fold on shorter laptop displays. */
+@media (min-width: 901px) and (max-height: 900px) {
+  .site-header { min-height: 70px; }
+
+  .hero {
+    align-items: start;
+    gap: clamp(1.5rem, 3vw, 4rem);
+    padding: 10px 0 14px;
+  }
+
+  .kicker { margin-bottom: 0.8rem; }
+
+  .intro h1 {
+    font-size: clamp(3rem, 5.1vw, 4.8rem);
+    line-height: 0.88;
+  }
+
+  .lede {
+    margin-top: 0.9rem;
+    font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+    line-height: 1.5;
+  }
+
+  .intro-actions { margin-top: 0.9rem; }
+
+  .button {
+    min-height: 40px;
+    padding-block: 0.6rem;
+  }
+
+  .mission-card {
+    min-height: 0;
+    margin-top: 1rem;
+  }
+
+  .mission-card__topline {
+    min-height: 34px;
+    padding: 0.5rem 0.85rem;
+  }
+
+  .mission-card__content { padding: 0.8rem 1rem 0.9rem; }
+  .mission-card h2 { font-size: clamp(1.15rem, 1.5vw, 1.4rem); }
+
+  #panel-description {
+    margin-top: 0.35rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .detail-list {
+    margin-top: 0.65rem;
+    gap: 0.35rem;
+  }
+
+  .detail-list li {
+    padding: 0.3rem 0.55rem;
+    font-size: 0.61rem;
+  }
+
+  .space__heading { margin-bottom: 0.45rem; }
+
+  .viewport {
+    width: min(100%, 820px, calc((100vh - 170px) * 1.16));
+    aspect-ratio: 1.16 / 1;
+  }
+
+  .site-footer { min-height: 44px; }
+}
+
 @media (max-width: 900px) {
   .site-shell { width: min(100% - 36px, 740px); }
   .hero { grid-template-columns: 1fr; gap: 4rem; padding-top: 4rem; }
@@ -734,7 +790,7 @@ a { color: inherit; }
   .celestial__label b { font-size: 0.62rem; }
   .orbit { top: 41%; }
   .orbit--outer { width: 92%; height: 74%; }
-  .project-belt { left: 2%; right: 2%; bottom: 5%; }
+  .project-belt { left: 3%; right: 3%; bottom: 11%; }
   .moon { font-size: 0.47rem; }
   .moon i { width: 28px; height: 28px; }
   .coordinates { display: none; }
@@ -747,8 +803,6 @@ a { color: inherit; }
   .button { width: 100%; }
   .planet--projects .celestial__label { display: none; }
 }
-
-@media (hover: none) { .system { transform: none !important; } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
